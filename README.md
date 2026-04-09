@@ -16,6 +16,6 @@
 	RAM: 32 GB
 	Taille: 250 GB
 	Réseau: Default Switch 
-	ISO: Ubuntu server arm64
+	ISO: Ubuntu server arm64 2.04.4
 	démarrage sécurisé désactivé
 ```
