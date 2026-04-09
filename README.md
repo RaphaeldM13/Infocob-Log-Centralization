@@ -1,5 +1,15 @@
 # Infocob
 
+## Sujet
+
+Mise en place d'un système de récupération et d'exploitation de logs sur un réseau de machines Apaches, Linux et Windows
+
+### **Précisions**
+- Outils open source
+- Réseau d'une centaine de machines
+
+##  Environnement
+
 ### **Outils:**
 ```
 	Déploiement: Docker
