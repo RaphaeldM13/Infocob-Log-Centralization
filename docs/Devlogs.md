@@ -1,5 +1,5 @@
 ## 09/04/2026
-- Mise en place de la VM de test
+- Mise en place de la VM de test -> échec
 - Début de la documentation
 
 ## 08/04/2026
