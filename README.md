@@ -1,10 +1,6 @@
 # Infocob
 
-## Sujet
-
-Mise en place d'un système de récupération et d'exploitation de logs sur un réseau de machines Apaches, Linux et Windows
-
-### **Précisions**
+## SujetMise en place d'un système de récupération et d'exploitation de logs sur un réseau de machines Apaches, Linux et Windows## **Précisions**
 - Outils open source
 - Réseau d'une centaine de machines
 
@@ -31,3 +27,4 @@ Mise en place d'un système de récupération et d'exploitation de logs sur un r
 	OpenSSH activé
 	
 ```
+ip: 192.168.7.75
