@@ -18,7 +18,7 @@ Mise en place d'un système de récupération et d'exploitation de logs sur un r
 	Storage logs: S3
 	Logshipping côté node: Alloy
 	node test: Apache
-	Hyperviseur node test: 
+	Hyperviseur node test: Hyper-V
 ```
 
 ### **Config Hyper-V:**
@@ -27,5 +27,7 @@ Mise en place d'un système de récupération et d'exploitation de logs sur un r
 	Taille: 250 GB
 	Réseau: Default Switch 
 	ISO: Ubuntu server arm64 24.04.4
-	démarrage sécurisé désactivé
+	démarrage sécurisé Certificat UEFI
+	OpenSSH activé
+	
 ```
