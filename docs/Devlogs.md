@@ -1,3 +1,9 @@
+## 10/04/2026
+- Changement de matériel -> fix VM issues
+- Installation de apache
+- Instalation de ssh
+- Installation de Alloy
+
 ## 09/04/2026
 - Mise en place de la VM de test -> échec
 - Début de la documentation
