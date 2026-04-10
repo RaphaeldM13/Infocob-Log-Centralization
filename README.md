@@ -18,7 +18,7 @@ Mise en place d'un système de récupération et d'exploitation de logs sur un r
 	Storage logs: S3
 	Logshipping côté node: Alloy
 	node test: Apache
-	Hyperviseur node test: Hyper-V
+	Hyperviseur node test: 
 ```
 
 ### **Config Hyper-V:**
