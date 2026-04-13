@@ -25,6 +25,6 @@
 	ISO: Ubuntu server arm64 24.04.4
 	démarrage sécurisé Certificat UEFI
 	OpenSSH activé
+	ip: 192.168.7.75
 	
 ```
-ip: 192.168.7.75
