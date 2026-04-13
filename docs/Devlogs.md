@@ -1,3 +1,7 @@
+## 13/04/2026
+- Configuration de Alloy
+- liaison Docker-server faite
+
 ## 10/04/2026
 - Changement de matériel -> fix VM issues
 - Installation de apache
@@ -10,7 +14,7 @@
 
 ## 08/04/2026
 - Installation des outils
-- Configurtation du Docker
+- Configuration du Docker
 - Configuration temporaire de *Grafana Loki*
 
 ## 07/04/2026
