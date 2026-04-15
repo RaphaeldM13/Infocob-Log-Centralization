@@ -50,7 +50,7 @@
   ## 4.1 Déploiement de Grafana Loki et du Docker Driver
   Dans le cadre de ce projet, Grafana Loki est déployé sous forme de conteneur Docker via Docker Compose, afin de simplifier son installation et assurer sa portabilité.
 
-  Les autres méthodes d’installation sont disponibles dans la documentation officielle de Grafana. Toutefois, il est important d’utiliser les fichiers de configuration fournis dans ce dépôt afin de garantir la compatibilité avec l’architecture mise en place.
+  Les autres méthodes d’installation sont disponibles dans la [documentation officielle de Grafana](https://grafana.com/docs/loki/latest/setup/install/docker/). Toutefois, il est important d’utiliser les fichiers de configuration fournis dans ce dépôt afin de garantir la compatibilité avec l’architecture mise en place.
 
   1. Création de l’environnement de travail
   Créer un répertoire dédié à Loki puis s’y placer :
@@ -94,15 +94,16 @@
   ```
   Une réponse ready confirme le bon fonctionnement du service.
 
-  ## 4.2 Déploiement Alloy (détaillé)
-```
-  là tu mets :
+  ## 4.2 Déploiement Alloy
+  ### Installation d'Alloy
+  Suivez simplement la documentation officielle de grafana en fonction de votre machine :
+  - [linux](https://grafana.com/docs/alloy/latest/set-up/install/linux/)
+  - [docker](https://grafana.com/docs/alloy/latest/set-up/install/docker/)
+  - [windows](https://grafana.com/docs/alloy/latest/set-up/install/windows/)
 
-  config
-  pipeline
-  labels
-  debug
-```
+  ### Configuration d'Alloy
+  
+  
 # 5. Pipeline de logs
 ```
   centré Alloy mais mention Loki
