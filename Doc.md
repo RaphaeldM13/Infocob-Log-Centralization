@@ -47,46 +47,54 @@
   Dans ce projet, Loki est déployé sous forme de conteneur Docker, ce qui simplifie son installation, sa portabilité et son intégration dans l’infrastructure existante. Il constitue ainsi le point de convergence de tous     les flux de logs issus des différents agents Alloy.
 
 # 4. Mise en place
-  ## 4.1 Déploiement Loki et Docker Driver
+  ## 4.1 Déploiement de Grafana Loki et du Docker Driver
+  Dans le cadre de ce projet, Grafana Loki est déployé sous forme de conteneur Docker via Docker Compose, afin de simplifier son installation et assurer sa portabilité.
 
-  Dans le cadre de ce projet, loki étant conteneurisé dans docker, l'installation par docker-compose est possible. Les autres moyens d'installation sont disponibles dans la documentation officielle de Grafana. Faites        cependant attention à utiliser les fichiers de configuration présents dans ce repository
+  Les autres méthodes d’installation sont disponibles dans la documentation officielle de Grafana. Toutefois, il est important d’utiliser les fichiers de configuration fournis dans ce dépôt afin de garantir la compatibilité avec l’architecture mise en place.
 
-  1. Créer un dossier loki et y entrer
-     ```
-     mkdir loki /
-     cd loki
-     ```
-  2. installer le client docker driver
-     ```
-     docker plugin install grafana/loki-docker-driver:3.7.0-arm64 --alias loki --grant-all-permissions
-     ```
-     pour vérifier l'état du plugin, utiliser
-     ```
-     docker plugin ls
-     ```
-     si le plugin est disabled
-     ```
-     docker plugin enable loki
-     systemctl restart docker
-     ```
+  1. Création de l’environnement de travail
+  Créer un répertoire dédié à Loki puis s’y placer :
+  ```
+  mkdir loki
+  cd loki
+  ```
+  2. Installation du Docker Logging Driver (Loki)
+  Installer le plugin Docker permettant la redirection des logs vers Loki :
+  ```
+  docker plugin install grafana/loki-docker-driver:3.7.0-arm64 --alias loki --grant-all-permissions
+  ```
+  Vérifier son installation :
+  ```
+  docker plugin ls
+  ```
+  En cas de désactivation du plugin :
+  ```
+  docker plugin enable loki
+  systemctl restart docker
+  ```
+  3. Récupération des fichiers de configuration
 
-  4. Placez dans le dossier loki les fichiers docker-compose.yaml, alloy-local-config.yaml, et loki-config.yaml présent dans le dossier Config de ce repository.
-     ```
-     wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/docker-compose.yaml -O docker-compose.yaml
-     wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/alloy-local-config.yaml -O alloy-local-config.yaml
-     wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/loki-config.yaml -O loki-config.yaml
-     ```
-  5. Lancer le Docker
-     ```
-     docker-compose -f docker-compose.yaml up
-     ```
-  6. Vérifications
-     pour vérifier que Loki tourne correctement, accédez à
-     ```
-     http://localhost:3101/ready
-     ```
+  Les fichiers nécessaires au fonctionnement du système (Docker Compose, Alloy et Loki) doivent être placés dans le répertoire loki.
+  Ils peuvent être récupérés directement depuis ce dépôt :
+  ```
+  wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/docker-compose.yaml -O docker-compose.yaml
+  wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/alloy-local-config.yaml -O alloy-local-config.yaml
+  wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/loki-config.yaml -O loki-config.yaml
+  ```
+  4. Démarrage de la stack
+  Lancer l’ensemble des services via Docker Compose :
+  ```
+  docker-compose -f docker-compose.yaml up -d
+  ```
+  5. Vérification du fonctionnement
 
-## 4.2 Déploiement Alloy (détaillé)
+  Une fois les services démarrés, vérifier que Loki est opérationnel en accédant à l’endpoint de santé :
+  ```
+  http://localhost:3101/ready
+  ```
+  Une réponse ready confirme le bon fonctionnement du service.
+
+  ## 4.2 Déploiement Alloy (détaillé)
 ```
   là tu mets :
 
