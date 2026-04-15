@@ -122,7 +122,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
 - docker
 
   Le fichier récupéré doit ensuite être modifié pour correspondre à la machine :
-    ## Adaptation des labels à l’environnement cible
+    - Adaptation des labels à l’environnement cible
 
     Les valeurs `job` et `hostname` doivent être adaptées à chaque machine afin d’identifier précisément la source des logs dans Loki.
 
@@ -138,6 +138,10 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
       }
     }
     ```
+    - Rechargement de Alloy
+      ```
+      sudo systemctl reload alloy
+      ```
   
 # 5. Pipeline de logs
   Le pipeline de logs décrit le cheminement des données depuis leur génération jusqu’à leur stockage.
