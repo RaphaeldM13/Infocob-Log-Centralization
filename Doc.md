@@ -74,7 +74,7 @@
   ```
   3. Récupération des fichiers de configuration
 
-  Les fichiers nécessaires au fonctionnement du système (Docker Compose, Alloy et Loki) doivent être placés dans le répertoire loki.
+  Les fichiers nécessaires au fonctionnement du système ([Docker Compose](Config/docker-compose.yaml), [Alloy](Config/alloy-local-config.yaml) et [Loki](Config/loki-config.yaml) doivent être placés dans le répertoire loki.
   Ils peuvent être récupérés directement depuis ce dépôt :
   ```
   wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/docker-compose.yaml -O docker-compose.yaml
@@ -95,6 +95,7 @@
   Une réponse ready confirme le bon fonctionnement du service.
 
   ## 4.2 Déploiement Alloy
+  Alloy sera déployé sur la source de logs 
   ### Installation d'Alloy
   Suivez simplement la documentation officielle de grafana en fonction de votre machine :
   - [linux](https://grafana.com/docs/alloy/latest/set-up/install/linux/)
@@ -102,7 +103,14 @@
   - [windows](https://grafana.com/docs/alloy/latest/set-up/install/windows/)
 
   ### Configuration d'Alloy
-  
+  récupérer config.alloy du dossier Config et 
+  - linux :
+    ```
+    sudo curl -o /etc/alloy/config.alloy https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/config.alloy
+    ```
+
+  - windows :
+    télécharger le fichier de configuration [config.alloy](Config/config.alloy)
   
 # 5. Pipeline de logs
 ```
