@@ -94,23 +94,32 @@
   ```
   Une réponse ready confirme le bon fonctionnement du service.
 
-  ## 4.2 Déploiement Alloy
-  Alloy sera déployé sur la source de logs 
-  ### Installation d'Alloy
-  Suivez simplement la documentation officielle de grafana en fonction de votre machine :
-  - [linux](https://grafana.com/docs/alloy/latest/set-up/install/linux/)
-  - [docker](https://grafana.com/docs/alloy/latest/set-up/install/docker/)
-  - [windows](https://grafana.com/docs/alloy/latest/set-up/install/windows/)
+## 4.2 Déploiement de Grafana Alloy
 
-  ### Configuration d'Alloy
-  récupérer config.alloy du dossier Config et 
-  - linux :
-    ```
-    sudo curl -o /etc/alloy/config.alloy https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/config.alloy
-    ```
+Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit comme un agent chargé de collecter, traiter et transmettre les logs vers Grafana Loki.
 
-  - windows :
-    télécharger le fichier de configuration [config.alloy](Config/config.alloy)
+### Installation d’Alloy
+
+  L’installation d’Alloy dépend du système cible. Il est recommandé de suivre la documentation officielle de Grafana :
+
+  - Linux : https://grafana.com/docs/alloy/latest/set-up/install/linux/
+  - Docker : https://grafana.com/docs/alloy/latest/set-up/install/docker/
+  - Windows : https://grafana.com/docs/alloy/latest/set-up/install/windows/
+### Configuration d’Alloy
+
+  Une fois Alloy installé, il doit être configuré à l’aide du fichier config.alloy fourni dans ce dépôt.
+
+- Linux
+  Le fichier de configuration peut être récupéré directement via la commande suivante :
+  ```
+  sudo curl -o /etc/alloy/config.alloy https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/config.alloy
+  ```
+- Windows
+  Télécharger le fichier de configuration config.alloy depuis le dépôt, puis le placer dans le répertoire d’installation d’Alloy, généralement :
+  ```
+  %PROGRAMFILES%\GrafanaLabs\Alloy\
+  ```
+- docker 
   
 # 5. Pipeline de logs
 ```
