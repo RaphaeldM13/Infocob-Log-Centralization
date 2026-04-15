@@ -119,7 +119,25 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
   ```
   %PROGRAMFILES%\GrafanaLabs\Alloy\
   ```
-- docker 
+- docker
+
+  Le fichier récupéré doit ensuite être modifié pour correspondre à la machine :
+    ## Adaptation des labels à l’environnement cible
+
+    Les valeurs `job` et `hostname` doivent être adaptées à chaque machine afin d’identifier précisément la source des logs dans Loki.
+
+    ```hcl
+    loki.process "apache_labels" {
+      forward_to = [loki.write.loki.receiver]
+
+      stage.static_labels {
+        values = {
+          job  = "<MACHINE_TYPE>",  # ex : apache, linux, windows
+          hostname = "<MACHINE_NAME>",  # nom ou identifiant de la machine
+        }
+      }
+    }
+    ```
   
 # 5. Pipeline de logs
   Le pipeline de logs décrit le cheminement des données depuis leur génération jusqu’à leur stockage.
@@ -180,9 +198,23 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
   ```
   sudo curl -o /etc/alloy/config.alloy https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/config.alloy
   ```
-  Modifier si nécessaire :
-  - IP de Loki (<IP_LOKI_HOST>)
-  - chemins de logs (ex : Apache)
+  ### Adapter les labels à la machine
+
+  Chaque instance Alloy doit être personnalisée afin d’identifier clairement la source des logs dans Loki :
+  ```hcl
+  loki.process "apache_labels" {
+    forward_to = [loki.write.loki.receiver]
+
+    stage.static_labels {
+      values = {
+        job  = "<MACHINE_TYPE>",  # ex : apache, linux, windows
+        host = "<MACHINE_NAME>",  # identifiant de la machine
+      }
+    }
+  }
+  ```
+
+  Ces labels permettent de filtrer efficacement les logs dans Grafana Loki (par machine et par type de service)
 
   Démarrer Alloy :
   ```
