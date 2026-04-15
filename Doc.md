@@ -122,9 +122,28 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
 - docker 
   
 # 5. Pipeline de logs
-```
-  centré Alloy mais mention Loki
-```
+  Le pipeline de logs décrit le cheminement des données depuis leur génération jusqu’à leur stockage.
+
+  Dans cette architecture, le traitement des logs s’effectue en plusieurs étapes :
+
+  ### Génération des logs
+  Les logs sont produits par les différentes sources, notamment le serveur Apache (logs d’accès et d’erreurs) ainsi que les systèmes hôtes.
+  
+  ### Collecte par Grafana Alloy
+  Alloy lit les fichiers de logs présents sur la machine (ex : /var/log/apache2/access.log) et détecte les nouvelles entrées en temps réel.
+  
+  ###Traitement et enrichissement
+  Les logs sont ensuite traités par Alloy, qui peut :
+    - ajouter des labels (ex : job=apache, host=...)
+    - structurer certaines informations
+    - préparer les données pour leur ingestion
+    
+  ### Transmission vers Loki
+  Les logs sont envoyés via HTTP à Grafana Loki à l’aide de son endpoint d’ingestion.
+  
+  ## Stockage et indexation
+  Loki stocke les logs en s’appuyant principalement sur leurs labels, permettant une recherche rapide et efficace.
+  
 # 6. Problèmes rencontrés
 ```
   surtout Alloy + intégration Loki
