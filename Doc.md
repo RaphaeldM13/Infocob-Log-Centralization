@@ -141,17 +141,59 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
   ### Transmission vers Loki
   Les logs sont envoyés via HTTP à Grafana Loki à l’aide de son endpoint d’ingestion.
   
-  ## Stockage et indexation
+  ### Stockage et indexation
   Loki stocke les logs en s’appuyant principalement sur leurs labels, permettant une recherche rapide et efficace.
   
 # 6. Problèmes rencontrés
-```
-  surtout Alloy + intégration Loki
-```
-# 7. Guide de déploiement (IMPORTANT)
-```
-  structuré comme ça :
-```
-## Étape 1 : lancer Loki
-## Étape 2 : config Alloy
-## Étape 3 : vérifier ingestion
+# 7. Guide de déploiement
+
+  Ce guide résume les étapes essentielles pour déployer rapidement la solution de centralisation des logs.
+
+  ## Étape 1 : Déployer Grafana Loki
+  ### Créer un dossier dédié :
+  ```
+  mkdir loki
+  cd loki
+  ```
+  ### Récupérer les fichiers de configuration :
+  ```
+  wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/docker-compose.yaml -O docker-compose.yaml
+  wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/loki-config.yaml -O loki-config.yaml
+  wget https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/alloy-local-config.yaml -O alloy-local-config.yaml
+  ```
+  ### Installer le driver Docker Loki :
+  ```
+  docker plugin install grafana/loki-docker-driver:3.7.0-arm64 --alias loki --grant-all-permissions
+  ```
+  ### Lancer la stack :
+  ```
+  docker-compose up -d
+  ```
+  ### Vérifier que Loki fonctionne :
+  ```
+  http://localhost:3101/ready
+  ```
+
+  ## Étape 2 : Déployer et configurer Grafana Alloy
+  ### Installer Alloy sur la machine source (Linux / Windows / Docker)
+  Télécharger la configuration :
+  ```
+  sudo curl -o /etc/alloy/config.alloy https://raw.githubusercontent.com/RaphaeldM13/Infocob-Log-Centralization/refs/heads/main/Config/config.alloy
+  ```
+  Modifier si nécessaire :
+  - IP de Loki (<IP_LOKI_HOST>)
+  - chemins de logs (ex : Apache)
+
+  Démarrer Alloy :
+  ```
+  sudo systemctl start alloy
+  ```
+
+  ## Étape 3 : Vérifier l’ingestion des logs
+  - Générer du trafic (ex : requête HTTP sur Apache)
+  - Vérifier dans Loki (via Grafana ou API) :
+  - http://<IP_LOKI_HOST>:3100/loki/api/v1/query
+  - Exemple de requête :
+    ```
+      {job="apache"}
+    ```
