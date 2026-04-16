@@ -40,14 +40,13 @@ loki.source.file "apache_scrape" {
   tail_from_end = true
 }
 
-// Ajout de labels
 loki.process "apache_labels" {
   forward_to = [loki.write.loki.receiver]
 
   stage.static_labels {
-      values = {
-      job  = "apache",
-      host = "pache-server-1",
+    values = {
+      job  = "<MACHINE_TYPE>",  # ex : apache, linux, windows
+      hostname = "<MACHINE_NAME>",  # nom ou identifiant de la machine
     }
   }
 }
