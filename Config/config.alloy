@@ -5,10 +5,10 @@ logging {
   level = "debug"
 }
 
-prometheus.exporter.unix "default" {
-  include_exporter_metrics = true
-  disable_collectors       = ["mdadm"]
-}
+//prometheus.exporter.unix "default" {
+//  include_exporter_metrics = true
+//  disable_collectors       = ["mdadm"]
+//}
 
 prometheus.scrape "default" {
   targets = array.concat(
