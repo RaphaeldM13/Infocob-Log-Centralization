@@ -125,6 +125,9 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
     - Adaptation des labels à l’environnement cible
 
     Les valeurs `job` et `hostname` doivent être adaptées à chaque machine afin d’identifier précisément la source des logs dans Loki.
+    ```
+    sudo nano /etc/alloy/config.alloy
+    ```
 
     ```hcl
     loki.process "apache_labels" {
@@ -205,6 +208,9 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
   ### Adapter les labels à la machine
 
   Chaque instance Alloy doit être personnalisée afin d’identifier clairement la source des logs dans Loki :
+    ```
+    sudo nano /etc/alloy/config.alloy
+    ```
   ```hcl
   loki.process "apache_labels" {
     forward_to = [loki.write.loki.receiver]
