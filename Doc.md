@@ -237,6 +237,7 @@ Une fois Alloy installé, il doit être configuré à l’aide du fichier config
     ```
     - Lancement de Alloy
       ```
+      sudo systemctl enable alloy
       sudo systemctl start alloy
       ```
   
