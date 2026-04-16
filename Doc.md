@@ -103,11 +103,50 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
   L’installation d’Alloy dépend du système cible. Il est recommandé de suivre la documentation officielle de Grafana :
 
   - Linux : https://grafana.com/docs/alloy/latest/set-up/install/linux/
-  - Docker : https://grafana.com/docs/alloy/latest/set-up/install/docker/
-  - Windows : https://grafana.com/docs/alloy/latest/set-up/install/windows/
-### Configuration d’Alloy
+    Vous pouvez installer Alloy en tant que service `systemd` sur Linux.
 
-  Une fois Alloy installé, il doit être configuré à l’aide du fichier config.alloy fourni dans ce dépôt.
+    ### Avant de commencer
+    Certaines machines virtuelles cloud basées sur Debian ne disposent pas de GPG installé par défaut.
+    Pour installer GPG sur votre machine virtuelle Linux, exécutez la commande suivante dans un terminal.
+    ```
+    sudo apt install gpg
+    ```
+    ### Installation
+    Pour installer Alloy sur Linux, exécutez les commandes suivantes dans un terminal.
+    1. Importer la clé GPG et ajouter le dépôt Grafana
+    ```
+    sudo mkdir -p /etc/apt/keyrings
+    sudo wget -O /etc/apt/keyrings/grafana.asc https://apt.grafana.com/gpg-full.key
+    sudo chmod 644 /etc/apt/keyrings/grafana.asc
+    echo "deb [signed-by=/etc/apt/keyrings/grafana.asc] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+    ```
+    2. Update the repositories.
+    ```
+    sudo apt-get update
+    ```
+    3. Installer Alloy
+    ```
+    sudo apt-get install alloy
+    ```
+    
+  - Docker : https://grafana.com/docs/alloy/latest/set-up/install/docker/
+    
+  - Windows : https://grafana.com/docs/alloy/latest/set-up/install/windows/
+    Vous pouvez installer Alloy sur Windows via une installation graphique standard, avec WinGet, ou en mode silencieux.
+    ### Installation graphique standard
+
+    Pour effectuer une installation graphique standard d’Alloy sur Windows, suivez les étapes suivantes :
+
+    1. Accédez à la page des releases sur GitHub.
+    2. Faites défiler jusqu’à la section Assets.
+    3. Téléchargez `alloy-installer-windows-amd64.exe` ou téléchargez et extrayez `alloy-installer-windows-amd64.exe.zip`.
+    4. Double-cliquez sur `alloy-installer-windows-amd64.exe` pour installer Alloy.
+
+    L’installateur place Alloy dans le répertoire par défaut :
+    `%PROGRAMFILES%\GrafanaLabs\Alloy`
+    ### Configuration d’Alloy
+
+Une fois Alloy installé, il doit être configuré à l’aide du fichier config.alloy fourni dans ce dépôt.
 
 - Linux
   Le fichier de configuration peut être récupéré directement via la commande suivante :
