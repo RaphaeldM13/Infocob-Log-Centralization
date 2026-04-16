@@ -153,6 +153,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
        ```
        winget install GrafanaLabs.Alloy
        ```
+    
     ### Installation silencieuse
 
     Pour effectuer une installation silencieuse d’Alloy sur Windows, suivez les étapes suivantes :
@@ -166,6 +167,27 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
        ```
        Remplacer les éléments suivants :
        <PATH_TO_INSTALLER> : le chemin vers l’exécutable de l’installateur décompressé.
+       
+    ### Options d’installation silencieuse
+    - `/CONFIG=<path>` : chemin vers le fichier de configuration.
+      Par défaut : `$INSTDIR\config.alloy`
+    - `/DISABLEREPORTING=<yes|no>` : désactive la collecte de données.
+      Par défaut : `no`
+    - `/DISABLEPROFILING=<yes|no>` : désactive le point de terminaison de profiling.
+      Par défaut : `no`
+    - `/ENVIRONMENT="KEY=VALUE\0KEY2=VALUE2"` : définit les variables d’environnement pour le service Windows.
+      Par défaut : ` `
+    - `/FORCEREGISTRY=yes` : au début de l’installation, supprime toutes les clés de registre Alloy, puis lance l’installation normalement afin que les options comme `/STABILITY` et `/DISABLEREPORTING` soient réécrites          proprement.
+      Par défaut, l’installateur conserve les valeurs existantes lors d’une mise à jour. Utilisez cette option pour les réinitialiser et supprimer les anciennes clés inutilisées.
+    - `/RUNTIMEPRIORITY="normal|below_normal|above_normal|high|idle|realtime"` : définit la priorité d’exécution du processus Alloy.
+      Par défaut : `normal`
+    - `/STABILITY="generally-available|public-preview|experimental"` : définit le niveau de stabilité d’Alloy.
+      Par défaut : `generally-available`
+    - `/USERNAME="<username>"` : définit l’utilisateur Windows utilisé pour exécuter le service.
+      Par défaut : `NT AUTHORITY\LocalSystem`
+    - `/PASSWORD="<password>"` : définit le mot de passe de l’utilisateur utilisé pour exécuter le service.
+      Non requis pour les comptes standards comme LocalSystem.
+      Par défaut : ` `
     ### Configuration d’Alloy
 
 Une fois Alloy installé, il doit être configuré à l’aide du fichier config.alloy fourni dans ce dépôt.
