@@ -111,7 +111,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
     ```
     sudo apt install gpg
     ```
-    ### Installation
+    #### Installation
     Pour installer Alloy sur Linux, exécutez les commandes suivantes dans un terminal.
     1. Importer la clé GPG et ajouter le dépôt Grafana
     ```
@@ -133,7 +133,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
     
   - Windows : https://grafana.com/docs/alloy/latest/set-up/install/windows/
     Vous pouvez installer Alloy sur Windows via une installation graphique standard, avec WinGet, ou en mode silencieux.
-    ### Installation graphique standard
+    #### Installation graphique standard
 
     Pour effectuer une installation graphique standard d’Alloy sur Windows, suivez les étapes suivantes :
 
@@ -144,7 +144,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
 
     L’installateur place Alloy dans le répertoire par défaut :
     `%PROGRAMFILES%\GrafanaLabs\Alloy`
-    ### Installation avec WinGet
+    #### Installation avec WinGet
 
     Pour installer Alloy avec WinGet, suivez les étapes suivantes :
 
@@ -154,7 +154,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
        winget install GrafanaLabs.Alloy
        ```
     
-    ### Installation silencieuse
+    #### Installation silencieuse
 
     Pour effectuer une installation silencieuse d’Alloy sur Windows, suivez les étapes suivantes :
 
@@ -168,7 +168,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
        Remplacer les éléments suivants :
        <PATH_TO_INSTALLER> : le chemin vers l’exécutable de l’installateur décompressé.
        
-    ### Options d’installation silencieuse
+    #### Options d’installation silencieuse
     - `/CONFIG=<path>` : chemin vers le fichier de configuration.
       Par défaut : `$INSTDIR\config.alloy`
     - `/DISABLEREPORTING=<yes|no>` : désactive la collecte de données.
@@ -188,6 +188,17 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
     - `/PASSWORD="<password>"` : définit le mot de passe de l’utilisateur utilisé pour exécuter le service.
       Non requis pour les comptes standards comme LocalSystem.
       Par défaut : ` `
+      
+    #### Configuration du service
+
+    Alloy utilise la clé de registre Windows suivante pour la configuration du service :
+    `HKLM\Software\GrafanaLabs\Alloy`
+
+    Arguments : type `REG_MULTI_SZ`
+    Chaque valeur représente un argument binaire pour l’exécutable Alloy.
+    Environment : type `REG_MULTI_SZ`
+    Chaque valeur représente une variable d’environnement au format KEY=VALUE pour l’exécutable Alloy.
+
     ### Configuration d’Alloy
 
 Une fois Alloy installé, il doit être configuré à l’aide du fichier config.alloy fourni dans ce dépôt.
