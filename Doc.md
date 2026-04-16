@@ -120,7 +120,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
     sudo chmod 644 /etc/apt/keyrings/grafana.asc
     echo "deb [signed-by=/etc/apt/keyrings/grafana.asc] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
     ```
-    2. Update the repositories.
+    2. Mettre à jour le dépot
     ```
     sudo apt-get update
     ```
@@ -235,9 +235,9 @@ Une fois Alloy installé, il doit être configuré à l’aide du fichier config
       }
     }
     ```
-    - Rechargement de Alloy
+    - Lancement de Alloy
       ```
-      sudo systemctl reload alloy
+      sudo systemctl start alloy
       ```
   
 # 5. Pipeline de logs
