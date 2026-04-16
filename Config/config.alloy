@@ -2,35 +2,24 @@
 //
 // For a full configuration reference, see https://grafana.com/docs/alloy
 logging {
-  level = "debug"
+  level = "info"
 }
 
-//prometheus.exporter.unix "default" {
-//  include_exporter_metrics = true
-//  disable_collectors       = ["mdadm"]
-//}
-
-prometheus.scrape "default" {
-  targets = array.concat(
-    prometheus.exporter.unix.default.targets,
-    [{
-      // Self-collect metrics
-      job         = "alloy",
-      __address__ = "127.0.0.1:12345",
-    }],
-  )
-
-  forward_to = [
-  // TODO: components to forward metrics to (like prometheus.remote_write or
-  // prometheus.relabel).
-  ]
-}
-// Découverte des fichiers de log Apache
 local.file_match "apache_logs" {
   path_targets = [{
     __path__ = "/var/log/apache2/*.log",
   }]
   sync_period = "5s"
+}
+loki.process "apache_labels" {
+  forward_to = [loki.write.loki.receiver]
+
+  stage.static_labels {
+    values = {
+      job  = "access",
+      hostname = "apache-server-5",
+    }
+  }
 }
 
 // Lecture des fichiers
@@ -40,21 +29,12 @@ loki.source.file "apache_scrape" {
   tail_from_end = true
 }
 
-loki.process "apache_labels" {
-  forward_to = [loki.write.loki.receiver]
-
-  stage.static_labels {
-    values = {
-      job  = "<MACHINE_TYPE>",  # ex : apache, linux, windows
-      hostname = "<MACHINE_NAME>",  # nom ou identifiant de la machine
-    }
-  }
-}
-
 // Envoi vers Loki
 loki.write "loki" {
   endpoint {
-    url       = "http://<IP_LOKI_HOST>:3100/loki/api/v1/push"
+    url       = "http://192.168.7.98:3100/loki/api/v1/push"
     tenant_id = "tenant1"
   }
 }
+
+
