@@ -105,7 +105,7 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
   - Linux : https://grafana.com/docs/alloy/latest/set-up/install/linux/
     Vous pouvez installer Alloy en tant que service `systemd` sur Linux.
 
-    ### Avant de commencer
+    #### Avant de commencer
     Certaines machines virtuelles cloud basées sur Debian ne disposent pas de GPG installé par défaut.
     Pour installer GPG sur votre machine virtuelle Linux, exécutez la commande suivante dans un terminal.
     ```
