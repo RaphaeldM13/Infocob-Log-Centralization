@@ -144,6 +144,28 @@ Grafana Alloy doit être déployé sur chaque machine source de logs. Il agit co
 
     L’installateur place Alloy dans le répertoire par défaut :
     `%PROGRAMFILES%\GrafanaLabs\Alloy`
+    ### Installation avec WinGet
+
+    Pour installer Alloy avec WinGet, suivez les étapes suivantes :
+
+    1. Assurez-vous que le gestionnaire de paquets WinGet est installé.
+    2. Exécutez la commande suivante.
+       ```
+       winget install GrafanaLabs.Alloy
+       ```
+    ### Installation silencieuse
+
+    Pour effectuer une installation silencieuse d’Alloy sur Windows, suivez les étapes suivantes :
+
+    1. Accédez à la page des releases sur GitHub.
+    2. Faites défiler jusqu’à la section Assets.
+    3. Téléchargez `alloy-installer-windows-amd64.exe` ou téléchargez et extrayez `alloy-installer-windows-amd64.exe.zip`.
+    4. Exécutez la commande suivante en tant qu’administrateur.
+       ```
+       <PATH>\alloy-installer-windows-amd64.exe /S
+       ```
+       Remplacer les éléments suivants :
+       <PATH_TO_INSTALLER> : le chemin vers l’exécutable de l’installateur décompressé.
     ### Configuration d’Alloy
 
 Une fois Alloy installé, il doit être configuré à l’aide du fichier config.alloy fourni dans ce dépôt.
